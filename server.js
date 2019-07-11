@@ -4,8 +4,9 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const Article = require('./models/article');
-
-mongoose.connect('mongodb://pxgraham:Peyton!1@ds249717.mlab.com:49717/heroku_0f791hr9');
+require('dotenv').config()
+const mongoURL = process.env.MONGO_URL;
+mongoose.connect(mongoURL);
 
 const app = express();
 app.use(express.json());
@@ -41,11 +42,10 @@ app.post('/api/scrape', (req, res) => {
 
   axios.get('https://old.reddit.com/r/webdev')
     .then(res => {
-      debug(res.data);
 
       const results = [];
       const $ = cheerio.load(res.data);
-      debug(res.data)
+
       $('p.title').each((index, element) => {
         const aTag = $(element).children('a');
         const text = $(element).text();
