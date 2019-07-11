@@ -5,7 +5,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Article = require('./models/article');
 
-mongoose.connect('mongodb://localhost:27017/scraper');
+mongoose.connect(proces.env.MONGO_URL);
 
 const app = express();
 app.use(express.json());

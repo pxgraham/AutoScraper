@@ -32,7 +32,11 @@ class App extends Component {
         {
               this.state.scrapeResults > -1 
               ? console.log()
-              : <a href={this.state.scrapeResults[this.state.count].link} target='_blank' rel="noopener noreferrer">{this.state.scrapeResults[this.state.count].title}</a>
+              : <a 
+                href={this.state.scrapeResults[this.state.count].link} 
+                target='_blank' rel="noopener noreferrer">
+                    {this.state.scrapeResults[this.state.count].title}
+                </a>
 
         }   
 
