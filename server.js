@@ -8,7 +8,10 @@ const Article = require('./models/article');
 // const mongoURL = process.env.MONGO_URL;
 // mongoose.connect(process.env);
 // console.log(mongoURL)
-
+if(process.env.MONGODB_URI) {
+ mongoose.connect(process.env.MONGODB_URI);
+}
+console.log(process.env.MONGO_URI)
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
