@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const Article = require('./models/article');
-require('dotenv').config()
-const mongoURL = process.env.MONGO_URL;
-mongoose.connect(process.env.MONGODB_URI);
-console.log(mongoURL)
+// require('dotenv').config()
+// const mongoURL = process.env.MONGO_URL;
+mongoose.connect('mongodb://pxgraham:Peyton!1@ds249717.mlab.com:49717/heroku_0f791hr9');
+// console.log(mongoURL)
 
 const app = express();
 app.use(express.json());
