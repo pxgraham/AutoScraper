@@ -5,7 +5,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const Article = require('./models/article');
 
-mongoose.connect(proces.env.MONGO_URL);
+mongoose.connect('mongodb://pxgraham:Peyton!1@ds249717.mlab.com:49717/heroku_0f791hr9');
 
 const app = express();
 app.use(express.json());
