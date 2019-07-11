@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 const Article = require('./models/article');
 // require('dotenv').config()
 // const mongoURL = process.env.MONGO_URL;
-mongoose.connect('mongodb://pxgraham:Peyton!1@ds249717.mlab.com:49717/heroku_0f791hr9');
+mongoose.connect(process.env.MONGODB_URI);
 // console.log(mongoURL)
 
 const app = express();
