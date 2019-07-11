@@ -11,7 +11,7 @@ const Article = require('./models/article');
 if(process.env.MONGODB_URI) {
  mongoose.connect(process.env.MONGODB_URI);
 }
-console.log(process.env.MONGO_URI)
+console.log(`*******THE URI IS ${process.env.MONGO_URI}********`)
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
