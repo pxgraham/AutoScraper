@@ -26,32 +26,45 @@ class App extends Component {
   render() {    
     return (
       <div className='app'>    
-        <button onClick={this.previousStory}>Previous</button>
-        <button onClick={this.nextStory}>Next</button>  
-        <ul> 
+        <button className='lBtn' onClick={this.previousStory}>Previous</button>
+        <button className='rBtn' onClick={this.nextStory}>Next</button>  
         {
               this.state.scrapeResults > -1 
               ? console.log()
-              : <a 
-                href={this.state.scrapeResults[this.state.count].link} 
-                target='_blank' rel="noopener noreferrer">
-                    {this.state.scrapeResults[this.state.count].title}
-                </a>
-
+              : this.state.scrapeResults[this.state.count].link.match(/^[\w\W]{18}/img)[0] === 'https://old.reddit'
+                ? //its reddit
+                <div className="container">
+                    <div className="storyContainer">
+                      <a 
+                      className="storyTitle"
+                      href={this.state.scrapeResults[this.state.count].link} 
+                      target='_blank' rel="noopener noreferrer"
+                      >
+                        {this.state.scrapeResults[this.state.count].title}
+                      </a>                                    
+                    </div>
+                    <div class="storyImgContainer">
+                      <br />                      
+                      <iframe class="storyImg" title="story" src={'https://www.bing.com/search?q=' + this.state.scrapeResults[this.state.count].title}></iframe>
+                    </div>
+                </div>
+                : //its not reddit
+                <div className="container">
+                      <div className="storyContainer">
+                        <a 
+                        className="storyTitle"
+                        href={this.state.scrapeResults[this.state.count].link} 
+                        target='_blank' rel="noopener noreferrer"
+                        >
+                          {this.state.scrapeResults[this.state.count].title}
+                        </a>                                    
+                      </div>
+                      <div class="storyImgContainer">
+                        <br />                      
+                        <iframe class="storyImg" title="story" src={this.state.scrapeResults[this.state.count].link}></iframe>
+                      </div>
+                  </div>
         }   
-
-        {/* 
-          {          
-            this.state.scrapeResults.map(r => (            
-              <li key={r.title}>
-                <p>Title: {r.title}</p>
-                <a href={r.link} >Click Me!</a>
-              </li>
-            ))
-          } 
-        */}
-
-        </ul>
       </div>
     );
   }

@@ -23,23 +23,38 @@ class Scrape extends React.Component {
       window.location.href = '/app'
     }
     return (
-      <div className='wrapper'>
-        {
-          this.state.hasScraped
-            ?  gotoApp()
-            : this.state.scraping 
-              ? <button 
-                className='scrape-button' 
-                >
-                  Please wait . . .
-                </button>
-              : <button 
-                className='scrape-button' 
-                onClick={this.startScrape}>
-                  Start viewing
-                </button> //not scraped yet
-            
-        }
+      <div>
+        <div className="titleWrapper">
+          <h1>Welcome to AutoScraper!</h1>
+          <h2>Your trusted news source for all things news worthy</h2>
+          <p>
+            Currently all the news stories are comming from /r/webdev. 
+            There will be more customizable options in the near future!
+          </p>
+          <p>
+            Feel free to check out my other 
+            <a href="https://github.com/pxgraham/" target="_blank"> projects </a> 
+            and be sure to look out for new content on this site daily!
+          </p>
+        </div>
+        <div className='wrapper'>
+          {
+            this.state.hasScraped
+              ?  gotoApp() //scrape
+              : this.state.scraping 
+                ? <button 
+                  className='scrape-button' 
+                  >
+                    Please wait . . . 
+                  </button> //scraping..
+                : <button 
+                  className='scrape-button' 
+                  onClick={this.startScrape}>
+                    Start viewing
+                  </button> //not scraped yet
+              
+          }
+        </div>
       </div>
     );
   }

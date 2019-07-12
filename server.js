@@ -4,12 +4,10 @@ const mongoose = require('mongoose');
 const axios = require('axios');
 const cheerio = require('cheerio');
 const Article = require('./models/article');
-// require('dotenv').config()
-// const mongoURL = process.env.MONGO_URL;
-// mongoose.connect(process.env);
-// console.log(mongoURL)
-mongoose.connect(process.env.MONGODB_URI);
-console.log(`*******THE URI IS ${process.env.MONGO_URI}********`)
+const mongoConnection = process.env.MONGODB_URI || 'mongodb://localhost:27017/scraper';
+
+mongoose.connect(mongoConnection);
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -51,7 +49,11 @@ app.post('/api/scrape', (req, res) => {
       $('p.title').each((index, element) => {
         const aTag = $(element).children('a');
         const text = $(element).text();
-        const href = $(aTag).attr('href');
+        let href = $(aTag).attr('href');
+        const regex = href.match(/^[\w\W]{3}/img)
+        if(regex[0] === '/r/') {
+          href = 'https://reddit.com' + href;
+        }
         results.push({ title: text, link: href });
       });
 
