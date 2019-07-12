@@ -52,7 +52,7 @@ app.post('/api/scrape', (req, res) => {
         let href = $(aTag).attr('href');
         const regex = href.match(/^[\w\W]{3}/img)
         if(regex[0] === '/r/') {
-          href = 'https://reddit.com' + href;
+          href = 'https://old.reddit.com' + href;
         }
         results.push({ title: text, link: href });
       });
