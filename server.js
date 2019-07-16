@@ -42,7 +42,7 @@ app.post('/api/scrape', (req, res) => {
 
   axios.get('https://old.reddit.com/r/webdev')
     .then(res => {
-
+      console.log(res.data)
       const results = [];
       const $ = cheerio.load(res.data);
 
